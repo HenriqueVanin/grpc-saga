@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package flight;
+
+service FlightService {
+  rpc BookFlight (FlightRequest) returns (FlightReply);
+}
+
+message FlightRequest {
+  string origin = 1;
+  string destination = 2;
+  string date = 3;
+  int32 number_of_people = 4;
+}
+
+message FlightReply {
+  bool success = 1;
+  string message = 2;
+  string ticket_details = 3;
+}

@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package agency;
+
+import "hotel.proto";
+import "car.proto";
+import "flight.proto";
+
+service AgencyService {
+  rpc BuyTicket (AgencyRequest) returns (AgencyReply);
+}
+
+message AgencyRequest {
+  string date = 1;
+  string origin = 2;
+  string destination = 3;
+  int32 number_of_people = 4;
+  bool include_hotel = 5;
+  bool include_car = 6;
+}
+
+message AgencyReply {
+  string message = 1;
+  bool success = 2;
+  string hotel_details = 3;
+  string car_details = 4;
+  string flight_details = 5;
+}

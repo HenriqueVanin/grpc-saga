@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package car;
+
+service CarService {
+  rpc RentCar (CarRequest) returns (CarReply);
+}
+
+message CarRequest {
+  string pickup_location = 1;
+  string date = 2;
+  int32 number_of_people = 3;
+}
+
+message CarReply {
+  bool success = 1;
+  string message = 2;
+  string reservation_details = 3;
+}
