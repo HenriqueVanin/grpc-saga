@@ -1,3 +1,4 @@
+import uuid
 import grpc
 import agency_pb2 as agency_pb2
 import agency_pb2_grpc as agency_pb2_grpc
@@ -15,6 +16,7 @@ def submit_request():
 
     # Create a request message
     request = agency_pb2.AgencyRequest(
+        id=str(uuid.uuid4()),
         date=date,
         origin=origin,
         destination=destination,
@@ -33,11 +35,12 @@ def submit_request():
 
         # Show the result in a message box
         messagebox.showinfo("Response from server", 
-                            f"Message: {response.message}\n"
-                            f"Success: {response.success}\n"
+                            f"Message: {'successful' if response.success else 'aborted'}\n\n"
+                            f"Airline ticket purchase was {response.message}\n\n"
+                            f"Services Responses\n\n"
+                            f"Flight Details: {response.flight_details}\n"
                             f"Hotel Details: {response.hotel_details}\n"
-                            f"Car Details: {response.car_details}\n"
-                            f"Flight Details: {response.flight_details}")
+                            f"Car Details: {response.car_details}\n")
 
     except grpc.RpcError as e:
         print("RPC Error", f"RPC failed: {e.code()}: {e.details()}")

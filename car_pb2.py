@@ -24,7 +24,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\tcar.proto\x12\x03\x63\x61r\"M\n\nCarRequest\x12\x17\n\x0fpickup_location\x18\x01 \x01(\t\x12\x0c\n\x04\x64\x61te\x18\x02 \x01(\t\x12\x18\n\x10number_of_people\x18\x03 \x01(\x05\"I\n\x08\x43\x61rReply\x12\x0f\n\x07success\x18\x01 \x01(\x08\x12\x0f\n\x07message\x18\x02 \x01(\t\x12\x1b\n\x13reservation_details\x18\x03 \x01(\t27\n\nCarService\x12)\n\x07RentCar\x12\x0f.car.CarRequest\x1a\r.car.CarReplyb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\tcar.proto\x12\x03\x63\x61r\"Y\n\nCarRequest\x12\x17\n\x0fpickup_location\x18\x01 \x01(\t\x12\x0c\n\x04\x64\x61te\x18\x02 \x01(\t\x12\x18\n\x10number_of_people\x18\x03 \x01(\x05\x12\n\n\x02id\x18\x04 \x01(\t\"U\n\x08\x43\x61rReply\x12\x0f\n\x07success\x18\x01 \x01(\x08\x12\x0f\n\x07message\x18\x02 \x01(\t\x12\x1b\n\x13reservation_details\x18\x03 \x01(\t\x12\n\n\x02id\x18\x04 \x01(\t2h\n\nCarService\x12)\n\x07RentCar\x12\x0f.car.CarRequest\x1a\r.car.CarReply\x12/\n\rCancelRentCar\x12\x0f.car.CarRequest\x1a\r.car.CarReplyb\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -32,9 +32,9 @@ _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'car_pb2', _globals)
 if not _descriptor._USE_C_DESCRIPTORS:
   DESCRIPTOR._loaded_options = None
   _globals['_CARREQUEST']._serialized_start=18
-  _globals['_CARREQUEST']._serialized_end=95
-  _globals['_CARREPLY']._serialized_start=97
-  _globals['_CARREPLY']._serialized_end=170
-  _globals['_CARSERVICE']._serialized_start=172
-  _globals['_CARSERVICE']._serialized_end=227
+  _globals['_CARREQUEST']._serialized_end=107
+  _globals['_CARREPLY']._serialized_start=109
+  _globals['_CARREPLY']._serialized_end=194
+  _globals['_CARSERVICE']._serialized_start=196
+  _globals['_CARSERVICE']._serialized_end=300
 # @@protoc_insertion_point(module_scope)

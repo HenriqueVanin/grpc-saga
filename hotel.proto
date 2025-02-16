@@ -4,16 +4,19 @@ package hotel;
 
 service HotelService {
   rpc BookHotel (HotelRequest) returns (HotelReply);
+  rpc CancelBookHotel (HotelRequest) returns (HotelReply);
 }
 
 message HotelRequest {
   string destination = 1;
   string date = 2;
   int32 number_of_people = 3;
+  string id = 4;
 }
 
 message HotelReply {
   bool success = 1;
   string message = 2;
   string reservation_details = 3;
+  string id = 4;
 }

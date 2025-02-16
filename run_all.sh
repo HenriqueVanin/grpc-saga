@@ -12,4 +12,7 @@ gnome-terminal -- bash -c "python3 car_server.py; exec bash"
 echo "Starting Agency Service..."
 gnome-terminal -- bash -c "python3 agency_server.py; exec bash"
 
+echo "Starting Client Interface..."
+gnome-terminal -- bash -c "python3 agency_client_gui.py; exec bash"
+
 echo "All services are running."

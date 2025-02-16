@@ -3,7 +3,7 @@
 import grpc
 import warnings
 
-import agency_pb2 as agency__pb2
+import agency_pb2 as protos_dot_agency__pb2
 
 GRPC_GENERATED_VERSION = '1.70.0'
 GRPC_VERSION = grpc.__version__
@@ -18,7 +18,7 @@ except ImportError:
 if _version_not_supported:
     raise RuntimeError(
         f'The grpc package installed is at version {GRPC_VERSION},'
-        + f' but the generated code in agency_pb2_grpc.py depends on'
+        + f' but the generated code in protos/agency_pb2_grpc.py depends on'
         + f' grpcio>={GRPC_GENERATED_VERSION}.'
         + f' Please upgrade your grpc module to grpcio>={GRPC_GENERATED_VERSION}'
         + f' or downgrade your generated code using grpcio-tools<={GRPC_VERSION}.'
@@ -36,8 +36,8 @@ class AgencyServiceStub(object):
         """
         self.BuyTicket = channel.unary_unary(
                 '/agency.AgencyService/BuyTicket',
-                request_serializer=agency__pb2.AgencyRequest.SerializeToString,
-                response_deserializer=agency__pb2.AgencyReply.FromString,
+                request_serializer=protos_dot_agency__pb2.AgencyRequest.SerializeToString,
+                response_deserializer=protos_dot_agency__pb2.AgencyReply.FromString,
                 _registered_method=True)
 
 
@@ -55,8 +55,8 @@ def add_AgencyServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
             'BuyTicket': grpc.unary_unary_rpc_method_handler(
                     servicer.BuyTicket,
-                    request_deserializer=agency__pb2.AgencyRequest.FromString,
-                    response_serializer=agency__pb2.AgencyReply.SerializeToString,
+                    request_deserializer=protos_dot_agency__pb2.AgencyRequest.FromString,
+                    response_serializer=protos_dot_agency__pb2.AgencyReply.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -84,8 +84,8 @@ class AgencyService(object):
             request,
             target,
             '/agency.AgencyService/BuyTicket',
-            agency__pb2.AgencyRequest.SerializeToString,
-            agency__pb2.AgencyReply.FromString,
+            protos_dot_agency__pb2.AgencyRequest.SerializeToString,
+            protos_dot_agency__pb2.AgencyReply.FromString,
             options,
             channel_credentials,
             insecure,

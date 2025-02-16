@@ -39,6 +39,11 @@ class FlightServiceStub(object):
                 request_serializer=flight__pb2.FlightRequest.SerializeToString,
                 response_deserializer=flight__pb2.FlightReply.FromString,
                 _registered_method=True)
+        self.CancelBookFlight = channel.unary_unary(
+                '/flight.FlightService/CancelBookFlight',
+                request_serializer=flight__pb2.FlightRequest.SerializeToString,
+                response_deserializer=flight__pb2.FlightReply.FromString,
+                _registered_method=True)
 
 
 class FlightServiceServicer(object):
@@ -50,11 +55,22 @@ class FlightServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def CancelBookFlight(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_FlightServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
             'BookFlight': grpc.unary_unary_rpc_method_handler(
                     servicer.BookFlight,
+                    request_deserializer=flight__pb2.FlightRequest.FromString,
+                    response_serializer=flight__pb2.FlightReply.SerializeToString,
+            ),
+            'CancelBookFlight': grpc.unary_unary_rpc_method_handler(
+                    servicer.CancelBookFlight,
                     request_deserializer=flight__pb2.FlightRequest.FromString,
                     response_serializer=flight__pb2.FlightReply.SerializeToString,
             ),
@@ -84,6 +100,33 @@ class FlightService(object):
             request,
             target,
             '/flight.FlightService/BookFlight',
+            flight__pb2.FlightRequest.SerializeToString,
+            flight__pb2.FlightReply.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def CancelBookFlight(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/flight.FlightService/CancelBookFlight',
             flight__pb2.FlightRequest.SerializeToString,
             flight__pb2.FlightReply.FromString,
             options,

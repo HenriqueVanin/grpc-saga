@@ -24,7 +24,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0c\x66light.proto\x12\x06\x66light\"\\\n\rFlightRequest\x12\x0e\n\x06origin\x18\x01 \x01(\t\x12\x13\n\x0b\x64\x65stination\x18\x02 \x01(\t\x12\x0c\n\x04\x64\x61te\x18\x03 \x01(\t\x12\x18\n\x10number_of_people\x18\x04 \x01(\x05\"G\n\x0b\x46lightReply\x12\x0f\n\x07success\x18\x01 \x01(\x08\x12\x0f\n\x07message\x18\x02 \x01(\t\x12\x16\n\x0eticket_details\x18\x03 \x01(\t2I\n\rFlightService\x12\x38\n\nBookFlight\x12\x15.flight.FlightRequest\x1a\x13.flight.FlightReplyb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0c\x66light.proto\x12\x06\x66light\"h\n\rFlightRequest\x12\x0e\n\x06origin\x18\x01 \x01(\t\x12\x13\n\x0b\x64\x65stination\x18\x02 \x01(\t\x12\x0c\n\x04\x64\x61te\x18\x03 \x01(\t\x12\x18\n\x10number_of_people\x18\x04 \x01(\x05\x12\n\n\x02id\x18\x05 \x01(\t\"S\n\x0b\x46lightReply\x12\x0f\n\x07success\x18\x01 \x01(\x08\x12\x0f\n\x07message\x18\x02 \x01(\t\x12\x16\n\x0eticket_details\x18\x03 \x01(\t\x12\n\n\x02id\x18\x05 \x01(\t2\x89\x01\n\rFlightService\x12\x38\n\nBookFlight\x12\x15.flight.FlightRequest\x1a\x13.flight.FlightReply\x12>\n\x10\x43\x61ncelBookFlight\x12\x15.flight.FlightRequest\x1a\x13.flight.FlightReplyb\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -32,9 +32,9 @@ _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'flight_pb2', _globals)
 if not _descriptor._USE_C_DESCRIPTORS:
   DESCRIPTOR._loaded_options = None
   _globals['_FLIGHTREQUEST']._serialized_start=24
-  _globals['_FLIGHTREQUEST']._serialized_end=116
-  _globals['_FLIGHTREPLY']._serialized_start=118
-  _globals['_FLIGHTREPLY']._serialized_end=189
-  _globals['_FLIGHTSERVICE']._serialized_start=191
-  _globals['_FLIGHTSERVICE']._serialized_end=264
+  _globals['_FLIGHTREQUEST']._serialized_end=128
+  _globals['_FLIGHTREPLY']._serialized_start=130
+  _globals['_FLIGHTREPLY']._serialized_end=213
+  _globals['_FLIGHTSERVICE']._serialized_start=216
+  _globals['_FLIGHTSERVICE']._serialized_end=353
 # @@protoc_insertion_point(module_scope)

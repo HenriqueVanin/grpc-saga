@@ -39,6 +39,11 @@ class CarServiceStub(object):
                 request_serializer=car__pb2.CarRequest.SerializeToString,
                 response_deserializer=car__pb2.CarReply.FromString,
                 _registered_method=True)
+        self.CancelRentCar = channel.unary_unary(
+                '/car.CarService/CancelRentCar',
+                request_serializer=car__pb2.CarRequest.SerializeToString,
+                response_deserializer=car__pb2.CarReply.FromString,
+                _registered_method=True)
 
 
 class CarServiceServicer(object):
@@ -50,11 +55,22 @@ class CarServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def CancelRentCar(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_CarServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
             'RentCar': grpc.unary_unary_rpc_method_handler(
                     servicer.RentCar,
+                    request_deserializer=car__pb2.CarRequest.FromString,
+                    response_serializer=car__pb2.CarReply.SerializeToString,
+            ),
+            'CancelRentCar': grpc.unary_unary_rpc_method_handler(
+                    servicer.CancelRentCar,
                     request_deserializer=car__pb2.CarRequest.FromString,
                     response_serializer=car__pb2.CarReply.SerializeToString,
             ),
@@ -84,6 +100,33 @@ class CarService(object):
             request,
             target,
             '/car.CarService/RentCar',
+            car__pb2.CarRequest.SerializeToString,
+            car__pb2.CarReply.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def CancelRentCar(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/car.CarService/CancelRentCar',
             car__pb2.CarRequest.SerializeToString,
             car__pb2.CarReply.FromString,
             options,

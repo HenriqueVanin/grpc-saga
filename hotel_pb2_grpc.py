@@ -39,6 +39,11 @@ class HotelServiceStub(object):
                 request_serializer=hotel__pb2.HotelRequest.SerializeToString,
                 response_deserializer=hotel__pb2.HotelReply.FromString,
                 _registered_method=True)
+        self.CancelBookHotel = channel.unary_unary(
+                '/hotel.HotelService/CancelBookHotel',
+                request_serializer=hotel__pb2.HotelRequest.SerializeToString,
+                response_deserializer=hotel__pb2.HotelReply.FromString,
+                _registered_method=True)
 
 
 class HotelServiceServicer(object):
@@ -50,11 +55,22 @@ class HotelServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def CancelBookHotel(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_HotelServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
             'BookHotel': grpc.unary_unary_rpc_method_handler(
                     servicer.BookHotel,
+                    request_deserializer=hotel__pb2.HotelRequest.FromString,
+                    response_serializer=hotel__pb2.HotelReply.SerializeToString,
+            ),
+            'CancelBookHotel': grpc.unary_unary_rpc_method_handler(
+                    servicer.CancelBookHotel,
                     request_deserializer=hotel__pb2.HotelRequest.FromString,
                     response_serializer=hotel__pb2.HotelReply.SerializeToString,
             ),
@@ -84,6 +100,33 @@ class HotelService(object):
             request,
             target,
             '/hotel.HotelService/BookHotel',
+            hotel__pb2.HotelRequest.SerializeToString,
+            hotel__pb2.HotelReply.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def CancelBookHotel(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/hotel.HotelService/CancelBookHotel',
             hotel__pb2.HotelRequest.SerializeToString,
             hotel__pb2.HotelReply.FromString,
             options,

@@ -2,10 +2,6 @@ syntax = "proto3";
 
 package agency;
 
-import "hotel.proto";
-import "car.proto";
-import "flight.proto";
-
 service AgencyService {
   rpc BuyTicket (AgencyRequest) returns (AgencyReply);
 }
@@ -17,6 +13,7 @@ message AgencyRequest {
   int32 number_of_people = 4;
   bool include_hotel = 5;
   bool include_car = 6;
+  string id = 7;
 }
 
 message AgencyReply {
@@ -25,4 +22,5 @@ message AgencyReply {
   string hotel_details = 3;
   string car_details = 4;
   string flight_details = 5;
+  string id = 7;
 }

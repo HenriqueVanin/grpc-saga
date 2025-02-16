@@ -24,7 +24,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0bhotel.proto\x12\x05hotel\"K\n\x0cHotelRequest\x12\x13\n\x0b\x64\x65stination\x18\x01 \x01(\t\x12\x0c\n\x04\x64\x61te\x18\x02 \x01(\t\x12\x18\n\x10number_of_people\x18\x03 \x01(\x05\"K\n\nHotelReply\x12\x0f\n\x07success\x18\x01 \x01(\x08\x12\x0f\n\x07message\x18\x02 \x01(\t\x12\x1b\n\x13reservation_details\x18\x03 \x01(\t2C\n\x0cHotelService\x12\x33\n\tBookHotel\x12\x13.hotel.HotelRequest\x1a\x11.hotel.HotelReplyb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0bhotel.proto\x12\x05hotel\"W\n\x0cHotelRequest\x12\x13\n\x0b\x64\x65stination\x18\x01 \x01(\t\x12\x0c\n\x04\x64\x61te\x18\x02 \x01(\t\x12\x18\n\x10number_of_people\x18\x03 \x01(\x05\x12\n\n\x02id\x18\x04 \x01(\t\"W\n\nHotelReply\x12\x0f\n\x07success\x18\x01 \x01(\x08\x12\x0f\n\x07message\x18\x02 \x01(\t\x12\x1b\n\x13reservation_details\x18\x03 \x01(\t\x12\n\n\x02id\x18\x04 \x01(\t2~\n\x0cHotelService\x12\x33\n\tBookHotel\x12\x13.hotel.HotelRequest\x1a\x11.hotel.HotelReply\x12\x39\n\x0f\x43\x61ncelBookHotel\x12\x13.hotel.HotelRequest\x1a\x11.hotel.HotelReplyb\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -32,9 +32,9 @@ _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'hotel_pb2', _globals)
 if not _descriptor._USE_C_DESCRIPTORS:
   DESCRIPTOR._loaded_options = None
   _globals['_HOTELREQUEST']._serialized_start=22
-  _globals['_HOTELREQUEST']._serialized_end=97
-  _globals['_HOTELREPLY']._serialized_start=99
-  _globals['_HOTELREPLY']._serialized_end=174
-  _globals['_HOTELSERVICE']._serialized_start=176
-  _globals['_HOTELSERVICE']._serialized_end=243
+  _globals['_HOTELREQUEST']._serialized_end=109
+  _globals['_HOTELREPLY']._serialized_start=111
+  _globals['_HOTELREPLY']._serialized_end=198
+  _globals['_HOTELSERVICE']._serialized_start=200
+  _globals['_HOTELSERVICE']._serialized_end=326
 # @@protoc_insertion_point(module_scope)
