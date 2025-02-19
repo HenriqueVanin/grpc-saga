@@ -16,60 +16,6 @@ import flight_pb2_grpc as flight_pb2_grpc
 
 database = "agency_bookings.csv"
 
-# Função para salvar reserva no CSV
-def save_booking(request, flight_details, hotel_details, car_details, success):
-    booking_id = request.id if request.id else str(uuid.uuid4())  # Usa ID existente ou gera um novo
-    created_at = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    status = "Active" if success else "Failed"
-
-    data = {
-        "id": booking_id,
-        "origin": request.origin,
-        "destination": request.destination,
-        "date": request.date,
-        "number_of_people": request.number_of_people,
-        "include_hotel": request.include_hotel,
-        "include_car": request.include_car,
-        "status": status,
-        "flight_details": flight_details,
-        "hotel_details": hotel_details,
-        "car_details": car_details,
-        "created_at": created_at
-    }
-
-    file_exists = False
-    try:
-        with open(database, "r") as f:
-            file_exists = True
-    except FileNotFoundError:
-        pass
-
-    with open(database, mode="a", newline="") as file:
-        writer = csv.writer(file)
-
-        if not file_exists:
-            writer.writerow(data.keys())  # Cabeçalho
-
-        writer.writerow(data.values())  # Dados
-
-    return booking_id
-
-# Função para atualizar reserva cancelada no CSV
-def update_booking_status(booking_id):
-    rows = []
-    
-    with open(database, "r", newline="") as file:
-        reader = csv.DictReader(file)
-        for row in reader:
-            if row["id"] == booking_id:
-                row["status"] = "Cancelled"
-            rows.append(row)
-
-    with open(database, "w", newline="") as file:
-        writer = csv.DictWriter(file, fieldnames=rows[0].keys())
-        writer.writeheader()
-        writer.writerows(rows)
-
 class AgencyService(agency_pb2_grpc.AgencyServiceServicer):
     def BookFlightCompensation(self, request, context):
         with grpc.insecure_channel('localhost:50052') as flight_channel:
@@ -81,7 +27,6 @@ class AgencyService(agency_pb2_grpc.AgencyServiceServicer):
                 date=request.date,
                 number_of_people=request.number_of_people
             ))
-            update_booking_status(request.id)
             return flight_response.ticket_details
 
     def BookHotelCompensation(self, request, context):
@@ -93,7 +38,6 @@ class AgencyService(agency_pb2_grpc.AgencyServiceServicer):
                 date=request.date,
                 number_of_people=request.number_of_people
             ))
-            update_booking_status(request.id)
             return hotel_response.reservation_details
 
     def BookCarCompensation(self, request, context):
@@ -105,7 +49,6 @@ class AgencyService(agency_pb2_grpc.AgencyServiceServicer):
                 date=request.date,
                 number_of_people=request.number_of_people
             ))
-            update_booking_status(request.id)
             return car_response.reservation_details
 
     def BuyTicket(self, request, context):
@@ -178,8 +121,6 @@ class AgencyService(agency_pb2_grpc.AgencyServiceServicer):
                         success=False,
                         id=request.id
                     )
-
-        save_booking(request, flight_details, hotel_details, car_details, True)
 
         return agency_pb2.AgencyReply(
             id=request.id,
